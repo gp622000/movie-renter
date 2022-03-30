@@ -34,11 +34,26 @@ class LoginForm extends Component {
     console.log("Submitted");
   };
 
+  validateProperty = ({ name, value }) => {
+    console.log("fromValidateProperty");
+    if (name === "username") {
+      if (value.trim() === "") return "Username is rquired";
+    }
+    if (name === "password") {
+      if (value.trim() === "") return "Password is rquired";
+    }
+  };
+
   handleChange = (e) => {
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(e.currentTarget);
+    if (errorMessage) errors[e.currentTarget.name] = errorMessage;
+    else delete errors[e.currentTarget.name];
     const account = { ...this.state.account };
     account[e.currentTarget.name] = e.currentTarget.value;
     this.setState({
       account,
+      errors,
     });
   };
 
