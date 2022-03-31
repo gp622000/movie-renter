@@ -1,5 +1,5 @@
 import { Component, React } from "react";
-import Joi from "joi-browser";
+import Joi, { options } from "joi-browser";
 import Input from "./common/input";
 
 class LoginForm extends Component {
@@ -46,6 +46,15 @@ class LoginForm extends Component {
 
   validateProperty = ({ name, value }) => {
     // console.log("fromValidateProperty");
+    // const obj = { [name]: value };
+
+    // const schema = { [name]: this.schema[name] };
+    // console.log("Schema", schema);
+    // const { error } = Joi.validate(obj, schema);
+    // console.log(error);
+    // if (error) return null;
+    // return error.details[0].message;
+    // return error ? error.details[0].message : null;
     if (name === "username") {
       if (value.trim() === "") return "Username is rquired";
     }
@@ -87,7 +96,11 @@ class LoginForm extends Component {
             onChange={this.handleChange}
             error={errors.password}
           />
-          <button type="submit" className="btn btn-primary m-2">
+          <button
+            type="submit"
+            className="btn btn-primary m-2"
+            disabled={this.validate()}
+          >
             Login
           </button>
         </form>
