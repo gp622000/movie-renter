@@ -5,12 +5,11 @@ const Input = (props) => {
     <div className="form-group">
       <label htmlFor={props.name}>{props.label}</label>
       <input
-        autoFocus
         value={props.value}
         onChange={props.onChange}
         name={props.name}
         id={props.name}
-        type="text"
+        type={props.type}
         className="form-control"
       />
       {/* // conditional rendering  */}

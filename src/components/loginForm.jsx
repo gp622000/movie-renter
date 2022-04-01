@@ -35,10 +35,10 @@ class LoginForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const errors = this.validate();
-    console.log(errors);
-    this.setState({ errors });
-    if (errors) return;
+    // const errors = this.validate();
+    // console.log(errors);
+    // this.setState({ errors });
+    // if (errors) return;
 
     // const username = this.username.current.value;
     console.log("Submitted");
@@ -66,8 +66,11 @@ class LoginForm extends Component {
   handleChange = (e) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(e.currentTarget);
-    if (errorMessage) errors[e.currentTarget.name] = errorMessage;
-    else delete errors[e.currentTarget.name];
+    if (errorMessage) {
+      errors[e.currentTarget.name] = errorMessage;
+    } else {
+      delete errors[e.currentTarget.name];
+    }
     const account = { ...this.state.account };
     account[e.currentTarget.name] = e.currentTarget.value;
     this.setState({
@@ -78,6 +81,7 @@ class LoginForm extends Component {
 
   render() {
     const { account, errors } = this.state;
+    console.log("error", errors);
     return (
       <div>
         <h1>Login</h1>
